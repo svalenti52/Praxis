@@ -54,35 +54,33 @@ std::stack<SSTK> rev_sstk;
 class Segments
 {
 	std::set<std::pair<int, int>> segments;
+	auto make_ordered_pair(int i, int j)
+    {
+	    if (i < j)
+	        return std::make_pair(i, j);
+	    else
+            return std::make_pair(j, i);
+    }
 public:
 	Segments() : segments({std::make_pair(0,1)}) {}
+
 	void Store(int x, int y)
 	{
-		if (x < y)
-			segments.insert(std::make_pair(x,y));
-		else
-			segments.insert(std::make_pair(y,x));
+	    auto ordered_pair = make_ordered_pair(x, y);
+	    segments.insert(ordered_pair);
 	}
+
 	bool Find(int x, int y)
 	{
-		std::pair<int, int> segment;
-		if (x < y)
-			segment = std::make_pair(x,y);
-		else
-			segment = std::make_pair(y,x);
-			
+		auto segment = make_ordered_pair(x,y);
 		return
 			find(segments.begin(), segments.end(),
 				segment) != segments.end();
 	}
+
 	void Delete(int x, int y)
-	{
-		std::pair<int, int> segment;
-		if (x < y)
-			segment = std::make_pair(x,y);
-		else
-			segment = std::make_pair(y,x);
-		
+    {
+        auto segment = make_ordered_pair(x,y);
 		segments.erase(segment);
 	}
 };
