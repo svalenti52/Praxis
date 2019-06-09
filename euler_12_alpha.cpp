@@ -6,26 +6,29 @@ using u64 = uint64_t;
 
 u64 number_of_divisors(u64 low_factor)
 {
-	// triangular numbers are of the form (index * (index+1)) / 2
-	u64 count1 = 2; // initialized to account for 1 and index
-	u64 count2 = 2; // initialized to account for 1 and index+1
+    if (low_factor < 3)
+        return low_factor;
 
-	u64 ofactor = low_factor + 1;
+	// triangular numbers are of the form (low_factor * (low_factor+1)) / 2
+	u64 low_factor_count = 2; // initialized to account for 1 and index
+	u64 high_factor_count = 2; // initialized to account for 1 and index+1
+
+	u64 high_factor = low_factor + 1;
 
 	if (low_factor % 2 == 0) low_factor /= 2; // get the divide by 2 out of the way
-	else ofactor /= 2;
+	else high_factor /= 2;
 	
 	for (u64 ix = 2; ix <= low_factor/2; ++ix)
 		if (low_factor % ix == 0)
-			++count1;
+			++low_factor_count;
 
-	for (u64 ix = 2; ix <= ofactor/2; ++ix)
-		if (ofactor % ix == 0)
-			++count2;
+	for (u64 ix = 2; ix <= high_factor/2; ++ix)
+		if (high_factor % ix == 0)
+			++high_factor_count;
 
 	// we are also using the fact that two numbers index and (index+1) are coprime
 	// i.e., the factors of one are completely different than the factors of the other
-	return count1 * count2;
+	return low_factor_count * high_factor_count;
 }
 
 //-----------------------------------------------------------------------------
