@@ -4,7 +4,7 @@
 
 using u64 = uint64_t;
 
-u64 number_of_divisors(u64 low_factor)
+u64 number_of_divisors_triangleNumber(u64 low_factor)
 {
     if (low_factor < 3)
         return low_factor;
@@ -36,23 +36,24 @@ u64 number_of_divisors(u64 low_factor)
 
 int main(int argc, char** argv)
 {
-	u64 i = 0;
-	u64 x = 0;
+	u64 the_low_factor = 0;
+	u64 greatest_divisor_count = 0;
 	
-	for (u64 ix = 1; ix <= 13'000; ++ix)
+	for (u64 low_factor = 1; low_factor <= 13'000; ++low_factor)
+
 	{
+		u64 divisor_count = number_of_divisors_triangleNumber(low_factor);
 		
-		u64 c = number_of_divisors(ix);
-		
-		if ( c > x)
+		if ( divisor_count > greatest_divisor_count)
 		{
-			x = c;
-			i = ix;
-			if (c > 500) break;
+			greatest_divisor_count = divisor_count;
+			the_low_factor = low_factor;
+			if (divisor_count > 500) break;
 		}
 
-		std::cout << ix << " gives " << c << " divisors\n";
+		std::cout <<"Low Factor " << low_factor << " gives " << divisor_count << " divisors\n";
 	}
 	
-	std::cout << "\n\nFor " << i << " the number of divisors is " << x << '\n';
+	std::cout << "\n\nFor " << the_low_factor << " the number of divisors is " << greatest_divisor_count << '\n';
+	std::cout << "Triangle Number is " << (the_low_factor * (the_low_factor + 1)) / 2 << '\n';
 }
