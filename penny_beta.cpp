@@ -62,7 +62,8 @@ class Segments
             return std::make_pair(j, i);
     }
 public:
-	Segments() : segments({std::make_pair(0,1)}) {}
+    Segments()
+            :segments({std::make_pair(0, 1), std::make_pair(1, 2)}) { }
 
 	void Store(int x, int y)
 	{
@@ -108,11 +109,12 @@ class StateMachine
 	Segments duplicate_edge;
 public:
 	std::vector<std::vector<int>> transitions;
-	
-	StateMachine() : transitions(25, states), state(1), cost(2.0), count(0)
+
+    StateMachine()
+            :transitions(25, states), state(2), cost(4.0), count(0)
 	{
 		transitions[0] = {};
-		transitions[1] = {2};
+        transitions[1] = {};
 		transitions[2] = {3, 7};
 		transitions[3] = {4, 8}; // 2 could not arrive at end state 24
 		transitions[4] = {3, 9};
