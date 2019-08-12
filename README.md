@@ -33,3 +33,8 @@ Penniless Pilgrim - 10-Aug-2019
     The adjective in the title has do with finding a path such that the total
     cost is zero. The problem starts with the fact the penniless pilgrim
     has taken two grid steps to the east and so carries a cost of 4.0 so far...
+
+Perfect Totient Numbers - 9-Jan-2019
+
+    List all the perfect totient numbers less than 10,000.  A totient number is
+    the iterated sum of the numbers totients.

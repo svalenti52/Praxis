@@ -11,26 +11,26 @@
 int main(int argc, char** argv)
 {
     using namespace std;
-    using U = uint32_t;
+    using U32 = uint32_t;
 
-    U number = 10'000;
+    U32 number = 10'000;
 
     if (argc>2) return 1;
     else if (argc>1) number = strtoul(argv[1], nullptr, 10);
 
-    vector<int> v(number);
-    iota(v.begin(), v.end(), 0); // v <- {0, 1, 2, 3, 4, ..., 9999} in the 10'000 case
-    v[1] = 0; // special case, because of sieving
+    vector<int> sum_totient(number);
+    iota(sum_totient.begin(), sum_totient.end(), 0); // sum_totient <- {0, 1, 2, 3, 4, ..., 9999} in the 10'000 case
+    sum_totient[1] = 0; // special case, because of sieving
 
-    for (U p = 2; p<number; ++p)
+    for (U32 p = 2; p<number; ++p)
     {
-        if (v[p]==p) // effectively only primes are going to satisfy this condition
-            for (U q = p; q<number; q += p)
-                v[q] = (p-1)*(v[q]/p); // because all composites are going to get sieved!
-        // i.e., the totient function reduces so v[p] != p
-        v[p] += v[v[p]]; // and every sum_totient of the prior is in position
+        if (sum_totient[p]==p) // effectively only primes are going to satisfy this condition
+            for (U32 q = p; q<number; q += p)
+                sum_totient[q] = (p-1)*(sum_totient[q]/p); // because all composites are going to get sieved!
+        // i.e., the totient function reduces so sum_totient[p] != p
+        sum_totient[p] += sum_totient[sum_totient[p]]; // and every sum_totient of the prior is in position
         // by the time we get to the later
-        if (v[p]==p)
+        if (sum_totient[p]==p)
             cout << p << ", ";
     }
 
