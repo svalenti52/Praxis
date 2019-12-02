@@ -1,7 +1,7 @@
 // penny.cpp
 
 #include <iostream>
-#include <fstream>
+// #include <fstream>
 #include <vector>
 #include <set>
 #include <map>
@@ -53,14 +53,16 @@ std::stack<SSTK> rev_sstk;
 
 class Segments
 {
-	std::set<std::pair<int, int>> segments;
-	auto make_ordered_pair(int i, int j)
+    std::set<std::pair<int, int>> segments;
+
+    static auto make_ordered_pair(int i, int j)
     {
-	    if (i < j)
-	        return std::make_pair(i, j);
-	    else
+        if (i<j)
+            return std::make_pair(i, j);
+        else
             return std::make_pair(j, i);
     }
+
 public:
     Segments()
             :segments({std::make_pair(0, 1), std::make_pair(1, 2)}) { }
@@ -125,95 +127,95 @@ public:
 		transitions[8] = {3, 7, 9, 13};
 		transitions[9] = {4, 8, 14};
 
-		transitions[10]= {5, 11, 15};
-		transitions[11]= {6, 10, 12, 16};
-		transitions[12]= {7, 11, 13, 17};
-		transitions[13]= {8, 12, 14, 18};
-		transitions[14]= {9, 13, 19};
+        transitions[10] = {5, 11, 15};
+        transitions[11] = {6, 10, 12, 16};
+        transitions[12] = {7, 11, 13, 17};
+        transitions[13] = {8, 12, 14, 18};
+        transitions[14] = {9, 13, 19};
 
-		transitions[15]= {10, 16, 20};
-		transitions[16]= {11, 15, 17, 21};
-		transitions[17]= {12, 16, 18, 22};
-		transitions[18]= {13, 17, 19, 23};
-		transitions[19]= {14, 18, 24};
+        transitions[15] = {10, 16, 20};
+        transitions[16] = {11, 15, 17, 21};
+        transitions[17] = {12, 16, 18, 22};
+        transitions[18] = {13, 17, 19, 23};
+        transitions[19] = {14, 18, 24};
 
-		transitions[20]= {15, 21};
-		transitions[21]= {16, 20, 22};
-		transitions[22]= {17, 21, 23};
-		transitions[23]= {18, 22, 24};
-		transitions[24]= {};
-	}
-	
-	void print_stack()
-	{
-		while (!sstk.empty())
-		{
-			SSTK s = sstk.top();
-			rev_sstk.push(s);
-			sstk.pop();
-		}
-		
-		while (!rev_sstk.empty())
-		{
-			SSTK s = rev_sstk.top();
-			sstk.push(s);
-			rev_sstk.pop();
-			int diff = s.tx - s.state;
-			switch (diff)
-			{
-				case -5:
-					std::cout << 'n';
-					break;
-				case -1:
-					std::cout << 'w';
-					break;
-				case 1:
-					std::cout << 'e';
-					break;
-				case 5:
-					std::cout << 's';
-					break;
-				default:
-					std::cout << 'X';
-					break;
-			}
-		}
-	}
-	
-	void print_stack_nodes()
-	{
-		while (!sstk.empty())
-		{
-			SSTK s = sstk.top();
-			rev_sstk.push(s);
-			sstk.pop();
-		}
-		
-		while (!rev_sstk.empty())
-		{
-			SSTK s = rev_sstk.top();
-			sstk.push(s);
-			rev_sstk.pop();
-			std::cout << beta_map[s.tx] << ' ';
-		}
-		std::cout << '\n';
-	}
-	
-	void transit_states()
-	{		
-		
-		if(state == 24)
-		{
-			//++count;
-			if (cost == 0.0)
-			{
-				++count;
-				std::cout << count << ". reached 24 at cost of " << cost << '\n';
-				print_stack();  // or print_stack_nodes() for alternate representation;
-				std::cout << '\n';
-			}
-			return;
-		}
+        transitions[20] = {15, 21};
+        transitions[21] = {16, 20, 22};
+        transitions[22] = {17, 21, 23};
+        transitions[23] = {18, 22, 24};
+        transitions[24] = {};
+    }
+
+    static void print_stack()
+    {
+        while (!sstk.empty())
+        {
+            SSTK s = sstk.top();
+            rev_sstk.push(s);
+            sstk.pop();
+        }
+
+        while (!rev_sstk.empty())
+        {
+            SSTK s = rev_sstk.top();
+            sstk.push(s);
+            rev_sstk.pop();
+            int diff = s.tx-s.state;
+            switch (diff)
+            {
+            case -5:
+                std::cout << 'n';
+                break;
+            case -1:
+                std::cout << 'w';
+                break;
+            case 1:
+                std::cout << 'e';
+                break;
+            case 5:
+                std::cout << 's';
+                break;
+            default:
+                std::cout << 'X';
+                break;
+            }
+        }
+    }
+
+    static void print_stack_nodes()
+    {
+        while (!sstk.empty())
+        {
+            SSTK s = sstk.top();
+            rev_sstk.push(s);
+            sstk.pop();
+        }
+
+        while (!rev_sstk.empty())
+        {
+            SSTK s = rev_sstk.top();
+            sstk.push(s);
+            rev_sstk.pop();
+            std::cout << beta_map[s.tx] << ' ';
+        }
+        std::cout << '\n';
+    }
+
+    void transit_states()
+    {
+
+        if (state==24)
+        {
+            //++count;
+            if (cost<=00.0)
+            {
+                ++count;
+                std::cout << count << ". reached 24 at cost of " << cost << '\n';
+                print_stack();  // or print_stack_nodes() for alternate representation;
+                std::cout << '\n';
+            }
+            return;
+        }
 		for (auto tx : transitions[state])
 		{
 			if (duplicate_edge.Find(state, tx)) continue;
