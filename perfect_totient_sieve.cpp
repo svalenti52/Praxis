@@ -1,6 +1,8 @@
 // perfect_totient_sieve.cpp
+// praxis 8-Jan-2019
 // perfect totient number is where the sum of its iterated totients are equal to the number
 // a totient is the count of numbers less than that number that are coprime to it
+// note that 1 is considered to be coprime to all numbers (natural numbers)
 // totative of a number is a number that is both less than and coprime
 // another way to defining a totient is the number of totatives
 
