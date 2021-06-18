@@ -37,4 +37,12 @@ Penniless Pilgrim - 10-Aug-2019
 Perfect Totient Numbers - 9-Jan-2019
 
     List all the perfect totient numbers less than 10,000.  A totient number is
-    the iterated sum of the numbers totients.
+    the iterated sum of the number's totients.  A perfect totient number is a
+    totient number that is equal to the number itself.
+    But what are totients?  The totient of N is defined to be numbers less than
+    N and also coprime to N (note, 1 is coprime to all N).
+    Finally, to get back to what is meant by "iterated sum of the number's totients":
+    Letting the number be 327 and T be the totient function, we have that sum being
+    T(327) + T(216) + T(72) + T(24) + T(8) + T(4) + T(2) = 216 + 72 + 24 + 8 + 4 +
+    2 + 1 = 327 (which means 327 is a perfect totient number).  Note that the iterated
+    sum for the number 327 is derived from T(327) = 216, T(216) = 72, T(72) = 24, etc.
