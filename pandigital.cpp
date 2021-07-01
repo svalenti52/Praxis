@@ -19,7 +19,7 @@ int main()
         uint64_t add2 = 100*v[3]+10*v[4]+v[5];
         uint64_t sum = 1000*v[6]+100*v[7]+10*v[8]+v[9];
 
-        if (add1+add2==sum)
+        if (add1+add2 == sum && add1 < add2)
         {
             cout << ix << ". " << add1 << " + " << add2 << " = " << sum << '\n';
             ++ix;
