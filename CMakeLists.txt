@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.7)
 project(Praxis)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 add_executable(PENNY_BETA penny_beta.cpp)
 add_executable(EULER_12 euler_12_alpha.cpp)

@@ -7,7 +7,7 @@
 #include <tuple>
 #include <numeric>
 
-auto collatz_prime_count(int number)
+auto collatz_sequence_count(int number)
 {
     auto even([](uint64_t z) { return z%2==0; });
     uint64_t x = number;
@@ -30,7 +30,7 @@ int main()
 
     for (int ix : v)
     {
-        auto[max_sequence_count, number] = collatz_prime_count(ix);
+        auto[max_sequence_count, number] = collatz_sequence_count(ix);
         if (max_collatz_sequence_count<max_sequence_count)
         {
             max_collatz_sequence_count = max_sequence_count;

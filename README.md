@@ -46,3 +46,25 @@ Perfect Totient Numbers - 9-Jan-2019
     T(327) + T(216) + T(72) + T(24) + T(8) + T(4) + T(2) = 216 + 72 + 24 + 8 + 4 +
     2 + 1 = 327 (which means 327 is a perfect totient number).  Note that the iterated
     sum for the number 327 is derived from T(327) = 216, T(216) = 72, T(72) = 24, etc.
+
+Almost Prime - 19-Apr-2019
+
+    A k-almost-prime is a number > 1 that is product of k primes.  A squarefree
+    k-almost-prime is a number that is the product of k distinct primes.
+    Find the set of the first 10 k-almost-prime numbers, then the set of the first
+    squarefree k-almost-prime numbers, where k is taken from the range [1, 5].
+
+Collatz Primes - 1-May-2015
+
+    A Collatz Sequence is one that starts with a given natural number, N.  It then
+    proceeds by N/2 if N is even, 3N+1 if N is odd.  The Collatz Sequence terminates
+    when reaches the value 1.  The Collatz Conjecture is that all Collatz Sequences
+    terminate.
+    Find the first Collatz Sequence that contains 65 or more primes.
+
+Hailstones - 17-Feb-2012
+
+    This is to do with the Collatz Sequence.  Its tendency to go up-and-down repeatedly
+    like hailstones in a thundercloud suggests the title for this article.
+    For this item, selected the task of finding the number with the maximum sized
+    Collatz Sequence for the range 1..1,600,000.
