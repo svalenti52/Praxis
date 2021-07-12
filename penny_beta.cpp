@@ -105,7 +105,7 @@ double calc_cost(int state, int tx, double i_cost)
 class StateMachine
 {
 	std::vector<int> states{};
-	int state;
+	int from_state;
 	double cost;
 	int count;
 	Segments duplicate_edge;
@@ -113,17 +113,17 @@ public:
 	std::vector<std::vector<int>> transitions;
 
     StateMachine()
-            :transitions(25, states), state(2), cost(4.0), count(0)
+            : transitions(25, states), from_state(2), cost(4.0), count(0)
 	{
 		transitions[0] = {};
         transitions[1] = {};
 		transitions[2] = {3, 7};
-		transitions[3] = {4, 8}; // 2 could not arrive at end state 24
+		transitions[3] = {4, 8}; // 2 could not arrive at end from_state 24
 		transitions[4] = {3, 9};
 
 		transitions[5] = {6, 10};
 		transitions[6] = {5, 7, 11};
-		transitions[7] = {6, 8, 12}; // 2 could not arrive at end state 24
+		transitions[7] = {6, 8, 12}; // 2 could not arrive at end from_state 24
 		transitions[8] = {3, 7, 9, 13};
 		transitions[9] = {4, 8, 14};
 
@@ -204,7 +204,7 @@ public:
     void transit_states()
     {
 
-        if (state==24)
+        if (from_state == 24)
         {
             // ++count;
             if (cost<=00.0)
@@ -216,20 +216,20 @@ public:
             }
             return;
         }
-		for (auto to_state : transitions[state])
+		for (auto to_state : transitions[from_state])
 		{
-			if (duplicate_edge.Find(state, to_state)) continue;
+			if (duplicate_edge.Find(from_state, to_state)) continue;
 
-			Push(state, to_state, cost); // before to_state cost
+			Push(from_state, to_state, cost); // before to_state cost
 
-			cost = calc_cost(state, to_state, cost); // after to_state cost
+			cost = calc_cost(from_state, to_state, cost); // after to_state cost
 
-			state = to_state;
+			from_state = to_state;
 
 			transit_states();
 
 			State_Stack s = Pop();
-			state = s.state;
+            from_state = s.state;
 			cost = s.cost;
 		}
 	}
