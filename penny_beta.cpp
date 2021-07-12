@@ -40,16 +40,16 @@ std::map<int, char> alpha_map
 
 std::string beta_map("ABCDEFGHIKLMNOPQRSTUVWXYZ");
 
-struct SSTK
+struct State_Stack
 {
 	int state;
-	int tx;
+	int transition_to_state;
 	double cost;
-	SSTK(int s, int t, double c) : state(s), tx(t), cost(c) {}
+	State_Stack(int s, int t, double c) : state(s), transition_to_state(t), cost(c) {}
 };
 
-std::stack<SSTK> sstk;
-std::stack<SSTK> rev_sstk;
+std::stack<State_Stack> state_stack;
+std::stack<State_Stack> print_order_stack;
 
 class Segments
 {
@@ -148,19 +148,19 @@ public:
 
     static void print_stack()
     {
-        while (!sstk.empty())
+        while (!state_stack.empty())
         {
-            SSTK s = sstk.top();
-            rev_sstk.push(s);
-            sstk.pop();
+            State_Stack s = state_stack.top();
+            print_order_stack.push(s);
+            state_stack.pop();
         }
 
-        while (!rev_sstk.empty())
+        while (!print_order_stack.empty())
         {
-            SSTK s = rev_sstk.top();
-            sstk.push(s);
-            rev_sstk.pop();
-            int diff = s.tx-s.state;
+            State_Stack s = print_order_stack.top();
+            state_stack.push(s);
+            print_order_stack.pop();
+            int diff = s.transition_to_state - s.state;
             switch (diff)
             {
             case -5:
@@ -184,19 +184,19 @@ public:
 
     static void print_stack_nodes()
     {
-        while (!sstk.empty())
+        while (!state_stack.empty())
         {
-            SSTK s = sstk.top();
-            rev_sstk.push(s);
-            sstk.pop();
+            State_Stack s = state_stack.top();
+            print_order_stack.push(s);
+            state_stack.pop();
         }
 
-        while (!rev_sstk.empty())
+        while (!print_order_stack.empty())
         {
-            SSTK s = rev_sstk.top();
-            sstk.push(s);
-            rev_sstk.pop();
-            std::cout << beta_map[s.tx] << ' ';
+            State_Stack s = print_order_stack.top();
+            state_stack.push(s);
+            print_order_stack.pop();
+            std::cout << beta_map[s.transition_to_state] << ' ';
         }
         std::cout << '\n';
     }
@@ -206,7 +206,7 @@ public:
 
         if (state==24)
         {
-            //++count;
+            // ++count;
             if (cost<=00.0)
             {
                 ++count;
@@ -216,19 +216,19 @@ public:
             }
             return;
         }
-		for (auto tx : transitions[state])
+		for (auto to_state : transitions[state])
 		{
-			if (duplicate_edge.Find(state, tx)) continue;
+			if (duplicate_edge.Find(state, to_state)) continue;
 
-			Push(state, tx, cost); // before tx cost
+			Push(state, to_state, cost); // before to_state cost
 
-			cost = calc_cost(state, tx, cost); // after tx cost
+			cost = calc_cost(state, to_state, cost); // after to_state cost
 
-			state = tx;
+			state = to_state;
 
 			transit_states();
 
-			SSTK s = Pop();
+			State_Stack s = Pop();
 			state = s.state;
 			cost = s.cost;
 		}
@@ -236,16 +236,16 @@ public:
 	
 	void Push(int s, int t, double c)
 	{
-		SSTK z(s, t, c);
-		sstk.push(z);
-		duplicate_edge.Store(z.state, z.tx);
+		State_Stack z(s, t, c);
+		state_stack.push(z);
+		duplicate_edge.Store(z.state, z.transition_to_state);
 	}
 	
-	SSTK Pop()
+	State_Stack Pop()
 	{
-		SSTK s = sstk.top();
-		sstk.pop();
-		duplicate_edge.Delete(s.state, s.tx);
+		State_Stack s = state_stack.top();
+		state_stack.pop();
+		duplicate_edge.Delete(s.state, s.transition_to_state);
 		return s;
 	}
 	

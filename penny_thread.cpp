@@ -21,6 +21,7 @@ struct edge
     {
         x = rhs.x;
         y = rhs.y;
+        return *this;
     }
 };
 
@@ -95,7 +96,7 @@ int GeneratePaths(vector<StateTuple>& q)
 
 //-----------------------------------------------------------------------------
 
-int MarkOutPath_1()
+int MarkOutPath_111()
 {
     vector<StateTuple> q;
     q.push_back(StateTuple(16.0, 4, 1, "eeees", {edge(1, 0), edge(3, 0), edge(5, 0), edge(7, 0), edge(8, 1)}));
@@ -255,7 +256,7 @@ int main(int argc, char** argv)
 
     auto start = chrono::steady_clock::now();
 
-    auto f1 = std::async(launch::deferred, MarkOutPath_1);
+    auto f1 = std::async(launch::deferred, MarkOutPath_111);
     auto f21 = std::async(launch::deferred, MarkOutPath_21);
     auto f22 = std::async(launch::deferred, MarkOutPath_22);
     auto f23 = std::async(launch::deferred, MarkOutPath_23);

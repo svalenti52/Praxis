@@ -30,6 +30,8 @@ Penniless Pilgrim - 10-Aug-2019
     Traveling left (west) subtracts a cost of 2 units.
     Traveling down (south) multiplies the current cost by 2.
     Traveling up (north) divides the current cost by 2.
+    Once a segment is traversed between adjacent grid points, it may not be
+    taken again.
     The adjective in the title has do with finding a path such that the total
     cost is zero. The problem starts with the fact the penniless pilgrim
     has taken two grid steps to the east and so carries a cost of 4.0 so far...
