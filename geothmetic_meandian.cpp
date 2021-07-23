@@ -33,6 +33,11 @@ int main()
     ///////////////////////////////////////////
 
     std::vector<double> list_of_numbers = {1.0, 1.0, 2.0, 3.0, 5.0};
+    if (list_of_numbers.size() < 3)
+    {
+        std::cout << "list of numbers must have at least 3 members";
+        return 1;
+    }
     // Don't assume that the list is in order
     std::sort(list_of_numbers.begin(), list_of_numbers.end());
 
