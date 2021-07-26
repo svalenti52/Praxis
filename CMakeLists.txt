@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.7)
 project(Praxis)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 add_executable(PENNY_BETA penny_beta.cpp)
 add_executable(EULER_12 euler_12_alpha.cpp)
@@ -13,3 +13,4 @@ add_executable(SIEVING_TOTIENTS sieving_totients.cpp)
 add_executable(PANDIGITAL pandigital.cpp)
 add_executable(ALMOST_PRIME almost_prime.cpp)
 add_executable(GEOTHMETIC_MEANDIAN geothmetic_meandian.cpp)
+add_executable(APPROX_SQUARING approx_squaring.cpp)

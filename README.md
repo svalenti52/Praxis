@@ -70,3 +70,22 @@ Hailstones - 17-Feb-2012
     like hailstones in a thundercloud suggests the title for this article.
     For this item, selected the task of finding the number with the maximum sized
     Collatz Sequence for the range 1..1,600,000.
+
+Approximate Squaring - 8-Jun-2021
+
+    Take a fraction n/d with n > d > 1 and let c be the ceiling of the fraction (the
+    ceiling is the smallest integer greater than or equal to the fraction).  If d does
+    not divide n evenly, then multiply the fraction by c giving a new value for n.
+    Repeat the process of the last sentence until d does divide n evenly.
+    The map f(n/d) = n/d * c where c is the ceiling of n/d, is referred to as the
+    approximate squaring map for obvious reasons.  It is conjectured but not proven
+    that the iterative mapping process will always terminate (i.e., d will eventually
+    divide n evenly).
+    As reported in the original Programming Praxis article, the number of iterations
+    is chaotic:  8/7 terminates in 3 steps resulting in a final value of 48,
+    6/5 terminates in 18 steps with a final value that is 57735 digits long, and
+    200/199 goes to a number with 10^435 digits (I think I will pass on this one...).
+    Implements a naive algorithm for now, no attempt at reducing due to common factors
+    and other possible improvements.  Uses Boost multiprecision library.  Using Boost
+    1.66.0, it doesn't seem to compile with gcc option -std=c++20, but it does work with
+    -std=c++17.
