@@ -211,7 +211,8 @@ public:
             {
                 ++count;
                 std::cout << count << ". reached 24 at cost of " << cost << '\n';
-                print_stack();  // or print_stack_nodes() for alternate representation;
+                print_stack();
+                // print_stack_nodes(); // for alternate representation;
                 std::cout << '\n';
             }
             return;

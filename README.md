@@ -89,3 +89,12 @@ Approximate Squaring - 8-Jun-2021
     and other possible improvements.  Uses Boost multiprecision library.  Using Boost
     1.66.0, it doesn't seem to compile with gcc option -std=c++20, but it does work with
     -std=c++17.
+
+Motzkin Numbers - 14-Sep-2021
+
+    I have an easier time understanding the following definition of Motzkin numbers:
+    For a given natural number N, the number of distinct grid paths leading from
+    point (0,0) to (N,0) using as steps (1,-1), (1,0), or (1,1) with the proviso that
+    the path never wander into negative territory.  For example, starting at (0,0) we
+    add (1,1) end up at (1,1); if we add (1,1) again, we arrive at (2,2).  If instead
+    we add (1,-1) to (0,0) we get (1,-1) - this path is not allowed (see above proviso).
