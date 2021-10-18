@@ -7,6 +7,7 @@
 #include <numeric>
 #include <val/montecarlo/Chronology.h>
 #include <val/montecarlo/Combinatorics.h>
+#include <stdint.h>
 
 std::vector<int32_t> steps{-1, 0, 1};
 
@@ -51,11 +52,11 @@ int main(int argc, char** argv)
 
     StopWatch s;
 
-    create_permutations<int>(steps, permutations, permutation, 0, number, passes_muster);
+    create_permutations_with_repetition<int>(steps, permutations, permutation, 0, number, passes_muster);
 
     std::cout << permutations << '\n';
 
-    std::cout << "For number -> " << number <<  "  Motzkin number = " << permutations.size() << '\n';
+    std::cout << "For number -> " << number <<  "  Motzkin number = " << permutations.size() << "\n\n";
 
     s.stop();
 }
