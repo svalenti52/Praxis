@@ -1,25 +1,15 @@
 //
-// Created by svale on 10/11/2021.
+// Created by svale on 10/18/2021.
 //
 
 #include <iostream>
-#include <vector>
-#include <numeric>
 #include <val/montecarlo/Chronology.h>
 #include <val/montecarlo/Combinatorics.h>
-#include <stdint.h>
 
-std::vector<int32_t> steps{-1, 0, 1};
+std::vector<int32_t> steps{-1, 0, 1, 2, 3, 4};
 
-bool passes_muster(std::vector<int>& v) {
-    std::vector<int> ps;
-    auto lt_zero = [](int x) { return x < 0;};
-
-    std::partial_sum(v.begin(), v.end(), std::back_inserter(ps));
-    if (std::any_of(ps.begin(), ps.end(), lt_zero)) return false;
-    if (*(ps.end() - 1) != 0) return false;
-    return true;
-}
+bool passes_muster(std::vector<int>& v)
+{ return true; }
 
 std::ostream& operator << (std::ostream& o, std::vector<int>& v) {
     o << '(';
@@ -52,11 +42,15 @@ int main(int argc, char** argv)
 
     StopWatch s;
 
-    create_combinatorial_element_set<int>(steps, permutations, permutation, 0, number, passes_muster, permutations_with_repetition<int>);
+    create_combinatorial_element_set<int>(steps, permutations,
+                                             permutation, 0,
+                                             number, passes_muster,
+                                             permutations_with_repetition<int>);
 
     std::cout << permutations << '\n';
 
-    std::cout << "For number -> " << number <<  "  Motzkin number = " << permutations.size() << "\n\n";
+    std::cout << "For " << steps.size() << " items taken " << number << " at a time gives "
+        << permutations.size() << " permutations with repetition\n\n";
 
     s.stop();
 }
