@@ -52,7 +52,9 @@ int main(int argc, char** argv)
 
     StopWatch s;
 
-    create_combinatorial_element_set<int>(steps, permutations, permutation, 0, number, passes_muster, permutations_with_repetition<int>);
+    create_combinatorial_element_set<int>(steps, permutations, permutation,
+                                          0, number, passes_muster,
+                                          permutations_with_repetition<int>);
 
     std::cout << permutations << '\n';
 

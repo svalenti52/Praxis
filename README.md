@@ -98,3 +98,11 @@ Motzkin Numbers - 14-Sep-2021
     the path never wander into negative territory.  For example, starting at (0,0) we
     add (1,1) end up at (1,1); if we add (1,1) again, we arrive at (2,2).  If instead
     we add (1,-1) to (0,0) we get (1,-1) - this path is not allowed (see above proviso).
+
+A Number Puzzle - 21-Jul-2015
+
+    Find a 10-digit number, with all digits unique, such that the first n digits of the
+    number are divisible by n.  That is the first digit should be divisble by one, the
+    second two digits form a two-digit number that is divisible by two, the number formed
+    by the first three digits is divisible by three, etc.  It turns out there in only one
+    number that meets all the critera for a 10-digit number.
