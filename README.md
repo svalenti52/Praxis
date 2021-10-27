@@ -106,3 +106,9 @@ A Number Puzzle - 21-Jul-2015
     second two digits form a two-digit number that is divisible by two, the number formed
     by the first three digits is divisible by three, etc.  It turns out there in only one
     number that meets all the critera for a 10-digit number.
+
+Four Points Determine A Square - 2-Jan-2013
+
+    Given four points with integral coordinates determine if they form a square.
+    The degenerate square that consists of four repetitions of a single point may be
+    considered either square, or not.
