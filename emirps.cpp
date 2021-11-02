@@ -7,13 +7,6 @@
 
 int main()
 {
-    const size_t ub1 = 20'000;
-    const size_t lb2 = 30'000;
-    const size_t ub2 = 40'000;
-    const size_t lb3 = 70'000;
-    const size_t ub3 = 80'000;
-    const size_t lb4 = 90'000;
-    const size_t ub4 = 100'000;
     const size_t ub = 1'000'000;
     auto first_digit_divisible = [](uint64_t number)
             {
@@ -44,10 +37,10 @@ int main()
             };
 
     uint64_t emirps_count = 0;
+    primes_list p(ub);
+
     for (int ix = 1; ix < ub; ++ix)
     {
-        primes_list p(ub);
-
         auto [result, ix_to_skip] = first_digit_divisible(ix);
         if (result){
             if (ix_to_skip > 1)
