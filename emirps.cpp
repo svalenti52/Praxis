@@ -4,53 +4,22 @@
 
 #include <iostream>
 #include <val/montecarlo/Combinatorics.h>
+#include <val/montecarlo/Chronology.h>
 
 int main()
 {
     const size_t ub = 1'000'000;
-    auto first_digit_divisible = [](uint64_t number)
-            {
-                bool result = false;
-                uint64_t x = number;
-                uint64_t y = 0;
-                while(x >= 10) {
-                    x /= 10;
-                    ++y;
-                }
-                switch (x)
-                {
-                    case 0:
-                    case 2:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 8:
-                        result = true;
-                        break;
-                }
-                uint64_t z = 1;
-                while (y > 0) {
-                    z *= 10;
-                    --y;
-                }
-                return std::make_pair(result, z);
-            };
-
     uint64_t emirps_count = 0;
-    primes_list p(ub);
+    primes_list p(ub);  // for one-time creation of primes_list
+    // had placed in loop and wondered at emirps performance (very slow)!
+
+    StopWatch stop_watch;
 
     for (int ix = 1; ix < ub; ++ix)
     {
-        auto [result, ix_to_skip] = first_digit_divisible(ix);
-        if (result){
-            if (ix_to_skip > 1)
-                ix += ix_to_skip - 1;
-            continue;
-        }
-
         if (p.is_prime(ix))
         {
-            uint64_t reversed_number = reverse(ix);
+            uint64_t reversed_number = numeric_digits_reversed(ix);
             if (p.is_prime(reversed_number))
             {
                 if (!is_numeric_palindrome(reversed_number)) {
@@ -61,4 +30,5 @@ int main()
         }
     }
     std::cout << "emirps count = " << emirps_count << '\n';
+    stop_watch.stop();
 }
