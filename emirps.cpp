@@ -3,14 +3,14 @@
 //
 
 #include <iostream>
-#include <val/montecarlo/Combinatorics.h>
+#include <val/montecarlo/Primes.h>
 #include <val/montecarlo/Chronology.h>
 
 int main()
 {
     const size_t ub = 1'000'000;
     uint64_t emirps_count = 0;
-    primes_list p(ub);  // for one-time creation of primes_list
+    Primes_List p(ub);  // for one-time creation of primes_list
     // had placed in loop and wondered at emirps performance (very slow)!
 
     StopWatch stop_watch;

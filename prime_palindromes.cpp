@@ -5,13 +5,13 @@
 //
 
 #include <iostream>
-#include <val/montecarlo/Combinatorics.h>
+#include <val/montecarlo/Primes.h>
 
 int main()
 {
     const size_t ub = 1'000'000;
 
-    primes_list primesList(ub);
+    Primes_List primesList(ub);
 
     int pp_index = 0;
     int prime_index = 0;
