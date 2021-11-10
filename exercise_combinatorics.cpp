@@ -3,10 +3,11 @@
 //
 
 #include <iostream>
+#include <numeric>
 #include <val/montecarlo/Chronology.h>
 #include <val/montecarlo/Combinatorics.h>
 
-std::vector<int32_t> steps{-1, 0, 1, 2, 3, 4};
+std::vector<int32_t> steps(19, 0);
 
 bool passes_muster(std::vector<int>& v)
 { return true; }
@@ -30,6 +31,8 @@ int main(int argc, char** argv)
     std::vector<std::vector<int>> permutations;
     std::vector<int> permutation;
 
+    std::iota(steps.begin(), steps.end(), 0);
+
     if (argc != 2)
     {
         std::cout << "usage: motzkin <number>" << '\n';
@@ -45,12 +48,12 @@ int main(int argc, char** argv)
     create_combinatorial_element_set<int>(steps, permutations,
                                              permutation, 0,
                                              number, passes_muster,
-                                             permutations_with_repetition<int>);
+                                             combinations_without_repetition<int>);
 
-    std::cout << permutations << '\n';
+    // std::cout << permutations << '\n';
 
     std::cout << "For " << steps.size() << " items taken " << number << " at a time gives "
-        << permutations.size() << " permutations with repetition\n\n";
+        << permutations.size() << " combinations without repetition\n\n";
 
     s.stop();
 }
