@@ -21,4 +21,4 @@ add_executable(SQUARE_4_POINTS square_4_points.cpp)
 add_executable(PRIME_PALINDROMES prime_palindromes.cpp)
 add_executable(EMIRPS emirps.cpp)
 add_executable(PRIME_COUNT_LEGENDRE prime_count_legendre.cpp)
-
+add_executable(GOOGLE_TH_4 google_treasure_hunt_4.cpp)
