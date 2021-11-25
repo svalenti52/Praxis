@@ -1,8 +1,8 @@
 // coin_change_2.cpp
 // 19-Nov-2021
 ////
-//// Coin Change, Part 1
-//// May 17, 2013
+//// Coin Change, Part 2
+//// May 21, 2013
 ////
 
 #include <iostream>
