@@ -5,7 +5,6 @@
 
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 int main()
 {
@@ -19,7 +18,10 @@ int main()
         uint64_t add2 = 100*v[3]+10*v[4]+v[5];
         uint64_t sum = 1000*v[6]+100*v[7]+10*v[8]+v[9];
 
-        if (add1+add2 == sum && add1 < add2)
+        // 1. Problem requirement: add1+add2 == sum
+        // 2. Ensure repeat solutions are not counted: add1 < add2
+        // 3. Ensure 4-digit number does not have a leading zero: v[6] != 0
+        if (add1+add2==sum && add1<add2 && v[6]!=0)
         {
             cout << ix << ". " << add1 << " + " << add2 << " = " << sum << '\n';
             ++ix;
