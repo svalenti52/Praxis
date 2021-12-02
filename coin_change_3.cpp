@@ -15,13 +15,6 @@ u32 number = 0;
 
 bool equal_to(Permutation& p)
 {
-/*
-    std::cout << "(";
-    for (u32 u : p)
-        std::cout << u << " ";
-    std::cout << "), ";
-*/
-//    std::cout << number << "  ";
     return number == std::accumulate(p.begin(), p.end(), static_cast<u32>(0));
 }
 
