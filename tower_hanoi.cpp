@@ -17,20 +17,23 @@
 // solve tower of hanoi puzzle
 using namespace std;
 
-int counter = 0;
+void print_move(int n, string& from_tower, string& to_tower)
+{
+    static int counter = 0;
+    cout << ++counter << ". Move disk " << n << " from " << from_tower <<
+         " to " << to_tower << endl;
+}
 
 void towerOfHanoi(int n, string& from_tower,
                   string& to_tower, string& alt_tower)
 {
     if (n == 1)
     {
-        cout << ++counter << ". Move disk 1 from " << from_tower <<
-             " to " << to_tower << endl;
+        print_move(n, from_tower, to_tower);
         return;
     }
     towerOfHanoi(n - 1, from_tower, alt_tower, to_tower);
-    cout << ++counter << ". Move disk " << n << " from " << from_tower <<
-         " to " << to_tower << endl;
+    print_move(n, from_tower, to_tower);
     towerOfHanoi(n - 1, alt_tower, to_tower, from_tower);
 }
 
