@@ -5,33 +5,34 @@
 #include <iostream>
 #include <vector>
 #include <val/montecarlo/Combinatorics.h>
+#include <val/montecarlo/Chronology.h>
 
-using u32 = uint32_t;
+using u64 = uint64_t;
 
-bool passes_muster(std::vector<u32>& v)
+bool passes_muster(std::vector<u64>& v)
 {
-    u32 number = 0;
-    u32 narcissistic = 0;
+    u64 number = 0;
+    u64 narcissistic = 0;
     if (v[0] == 0) return false;
     for (auto x = v.begin(); x != v.end(); ++x)
-         narcissistic += static_cast<u32>(pow(*x, v.size()));
+         narcissistic += static_cast<u64>(pow(*x, v.size()));
     for (auto x = 0; x < v.size(); ++x)
-        number += v[x] * static_cast<u32>(pow(10.0, static_cast<double>(v.size() - x - 1)));
+        number += v[x] * static_cast<u64>(pow(10.0, static_cast<double>(v.size() - x - 1)));
     if (narcissistic == number)
         return true;
     return false;
 }
 
-std::ostream& operator << (std::ostream& o, std::vector<u32>& v) {
+std::ostream& operator << (std::ostream& o, std::vector<u64>& v) {
     o << '(';
-    for (u32 ix : v)
+    for (u64 ix : v)
         o << ix << ", ";
     o << ")\n";
     return o;
 }
 
-std::ostream& operator << (std::ostream& o, std::vector<std::vector<u32>>& vofv) {
-    for (std::vector<u32>& v : vofv)
+std::ostream& operator << (std::ostream& o, std::vector<std::vector<u64>>& vofv) {
+    for (std::vector<u64>& v : vofv)
         o << v;
     return o;
 }
@@ -46,13 +47,17 @@ int main(int argc, char** argv)
     }
 
     const int total_number_digits = strtol(argv[1], nullptr, 10);
-    std::vector<u32> digits {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    std::vector<u64> digits {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-    std::vector<std::vector<u32>> vset;
-    std::vector<u32> permutation;
+    std::vector<std::vector<u64>> permutations;
+    std::vector<u64> permutation;
 
-    create_combinatorial_element_set<u32>(digits, vset, permutation, 0, total_number_digits,
-                                     passes_muster, permutations_with_repetition<u32>);
+    StopWatch s;
 
-    std::cout << vset;
+    create_combinatorial_element_set<u64>(digits, permutations, permutation, 0, total_number_digits,
+                                          passes_muster, permutations_with_repetition<u64>);
+
+    std::cout << permutations;
+
+    s.stop();
 }
