@@ -9,13 +9,13 @@
 
 using u64 = uint64_t;
 
-bool passes_muster(std::vector<u64>& v)
+bool narcissism_test(std::vector<u64>& v)
 {
     u64 number = 0;
     u64 narcissistic = 0;
     if (v[0] == 0) return false;
-    for (auto x = v.begin(); x != v.end(); ++x)
-         narcissistic += static_cast<u64>(pow(*x, v.size()));
+    for (u64 x : v)
+        narcissistic += static_cast<u64>(pow(x, v.size()));
     for (auto x = 0; x < v.size(); ++x)
         number += v[x] * static_cast<u64>(pow(10.0, static_cast<double>(v.size() - x - 1)));
     if (narcissistic == number)
@@ -55,7 +55,7 @@ int main(int argc, char** argv)
     StopWatch s;
 
     create_combinatorial_element_set<u64>(digits, permutations, permutation, 0, total_number_digits,
-                                          passes_muster, permutations_with_repetition<u64>);
+                                          narcissism_test, permutations_with_repetition<u64>);
 
     std::cout << permutations;
 
