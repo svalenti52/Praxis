@@ -7,7 +7,7 @@
 //// Now the dynamic programming approach
 //// We derive a matrix using the recurrence relation
 //// V[i, w] = max(V[i-1, w], v_sub_i + V[i-1, w-w_sub_i])
-////     where w is taken from 0<= w <= W (W is the knapsack capacity)
+////     where w is taken from 0 <= w <= W (W is the knapsack capacity)
 ////     and V[0, w] = 0
 ////
 //// This code is contributed by Debojyoti Mandal
