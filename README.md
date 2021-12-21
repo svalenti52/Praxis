@@ -112,3 +112,10 @@ Four Points Determine A Square - 2-Jan-2013
     Given four points with integral coordinates determine if they form a square.
     The degenerate square that consists of four repetitions of a single point may be
     considered either square, or not.
+
+Pandigital Numbers - 30-Oct-2012
+
+    Two 3-digit numbers are added together to give a 4-digit value (10 digits total for
+    the expression).  What values are possible using different digits (0 through 9) across
+    the 10 digits of the expression (i.e., each digit appears once, but no more than once)?
+    The leading digit of the 3-digit and 4-digit numbers is assumed not to be zero.

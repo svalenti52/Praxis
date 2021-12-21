@@ -67,6 +67,7 @@ int main()
     std::uniform_int_distribution<u32> value(1, 50);
 
     std::string names {"ABCDEFGHIJ"};
+    // std::string names {"abcde"};
     std::vector<u32> weight_fixed {12, 1, 4, 2, 1};
     std::vector<u32> value_fixed{4, 2, 10, 2, 1};
     const u32 number_of_items = names.size();
