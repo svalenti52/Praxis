@@ -20,8 +20,8 @@ void print_flag(Flag_t& flag)
 
 int main()
 {
-    Flag_t dutch_flag{'B', 'W', 'B', 'R', 'W', 'R', 'B'};
-    // Flag_t dutch_flag {'B', 'B', 'B', 'R', 'W', 'R', 'B', 'W', 'R'};
+    // Flag_t dutch_flag{'B', 'W', 'B', 'R', 'W', 'R', 'B'};
+    Flag_t dutch_flag{'B', 'B', 'B', 'R', 'W', 'R', 'B', 'W', 'R', 'B'};
 
     auto red = 0;
     auto white = 0;

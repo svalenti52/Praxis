@@ -6,24 +6,23 @@
 #include <vector>
 #include <iostream>
 #include <numeric>
+#include <stdint.h>
 
 int main()
 {
     using namespace std;
 
-    const uint64_t upper_bound = 100;
+    const uint64_t upper_bound = 200;
 
     vector<uint64_t> totient(upper_bound, 0);
     iota(totient.begin(), totient.end(), 0);
 
     for (uint64_t ix = 2; ix<upper_bound; ++ix)
-    {
         if (totient[ix]==ix)
             for (uint64_t jx = ix; jx<upper_bound; jx += ix)
                 totient[jx] = (ix-1)*totient[jx]/ix;
-    }
 
-    for (uint64_t ix = 0; ix<upper_bound; ++ix)
-        cout << '(' << ix << ", " << totient[ix] << ") ";
+    for (uint64_t ix = 150; ix<upper_bound; ++ix)
+        cout << '(' << ix << ", " << totient[ix] << ")\n";
 }
 
