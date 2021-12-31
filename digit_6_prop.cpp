@@ -21,17 +21,17 @@ int main()
 {
     for (int ix = 1; ix<1'000'000; ++ix)
     {
-        std::string appended_str = std::to_string(ix);
-        std::string prepended_str{appended_str};
-        appended_str.append("6");
-        prepended_str.insert(0, 1, '6');
+        std::string after_6_str = std::to_string(ix);
+        std::string before_6_str{after_6_str};
+        after_6_str.append("6");
+        before_6_str.insert(0, 1, '6');
 
-        int prepended = std::stoi(prepended_str, nullptr, 10);
-        int appended = std::stoi(appended_str, nullptr, 10);
+        int before_6 = std::stoi(before_6_str, nullptr, 10);
+        int after_6 = std::stoi(after_6_str, nullptr, 10);
 
-        if (4*appended==prepended)
+        if (4*after_6==before_6)
         {
-            std::cout << "Minimum value with property = " << appended_str << '\n';
+            std::cout << "Minimum value with property = " << after_6_str << '\n';
             break;
         }
     }
