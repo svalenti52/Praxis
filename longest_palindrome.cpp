@@ -46,9 +46,9 @@ int main()
 
     int nr_even_palindromes = 0;
     int nr_odd_palindromes = 0;
-    int palindrome_size_control = 2;
-    int largest_odd_palindrome_index = 0;
-    int largest_even_palindrome_index = 0;
+    int palindrome_size_control = 3;
+    int largest_odd_palindrome_index = -1;
+    int largest_even_palindrome_index = -1;
 
     for (int ix = palindrome_size_control; ix<sentence.size()-palindrome_size_control; ++ix)
     {
