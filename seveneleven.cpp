@@ -8,6 +8,7 @@
 #include <iostream>
 #include <numeric>
 #include <vector>
+#include <iomanip>
 
 using u32 = uint32_t;
 
@@ -34,10 +35,11 @@ int main()
 
                 if (product == target) {
                     found = true;
-                    std::cout << "1=" << price[0] << "  "
-                              << "2=" << price[1] << "  "
-                              << "3=" << price[2] << "  "
-                              << "4=" << price[3] << '\n';
+                    // std::cout.imbue(std::locale("en_US.UTF-8"));
+                    std::cout << std::left << std::setfill('0') << "1=" << std::setw(4) << price[0] / 100.0 << "  "
+                              << "2=" << std::setw(4) << price[1] / 100.0 << "  "
+                              << "3=" << std::setw(4) << price[2] / 100.0 << "  "
+                              << "4=" << std::setw(4) << price[3] / 100.0 << '\n';
                 }
             }
         }
